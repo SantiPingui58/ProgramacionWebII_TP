@@ -45,7 +45,6 @@ echo "<nav class='navbar navbar-expand-lg navbar-light $claseAdmin'>";
                     if ($_SESSION['admin']==1) {
                       echo "<a class='dropdown-item' href='admin.php'>Panel de Administrador</a>";
                     } 
-                    echo "<a class='dropdown-item' href='favoritos.php'>Mis Favoritos</a>";
                     echo "<a class='dropdown-item' href='logout.php'>Cerrar Sesión</a>";
                     echo "</div>";
                     echo "</li>";

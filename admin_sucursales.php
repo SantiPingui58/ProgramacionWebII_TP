@@ -30,10 +30,16 @@ if (!isset($_SESSION['usuario']) || (isset($_SESSION['admin']) && $_SESSION['adm
     </table>
 </div>
 
+<script src="./js/eliminar.js"></script>
 <script>
 $(document).ready(function() {
     var tabla = $('#miTabla').DataTable({
-        "ajax": "./ajax/get_sucursales.php",
+        "ajax": {
+            "url": "./ajax/get_entidades.php",
+            "data": function (d) {
+                d.tabla = "sucursales"; // Aquí puedes cambiar el nombre de la tabla según necesites
+            }
+        },
         "columns": [
             {"data": "id_sucursal"},
             {"data": "nombre"},
@@ -41,57 +47,16 @@ $(document).ready(function() {
             {"data": "direccion"},
             {
                 "data": null,
-                //Botonones de editar y eliminar
+                // Botón de eliminar
                 "render": function (data, type, row) {
-                    return '<button type="button" class="btn btn-primary btn-editar">' +
-                           '<i class="fas fa-pencil-alt"></i></button> ' +
-                           '<button type="button" class="btn btn-danger btn-eliminar" data-id="' + row.id_sucursal + '">' +
+                    return '<button type="button" class="btn btn-danger btn-eliminar" data-id="' + row.id_sucursal + '" data-url="./ajax/eliminar.php" data-tipo="sucursal">' +
                            '<i class="fas fa-trash-alt"></i></button>';
                 }
             }
         ]
     });
-
-    //clik del botón eliminar
-    $('#miTabla tbody').on('click', '.btn-eliminar', function () {
-        var id_sucursal = $(this).data('id');
-
-        Swal.fire({
-            title: '¿Estás seguro que quieres eliminar el registro ID ' + id_sucursal +'?',
-            text: 'No podrás revertir esto',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Eliminar',
-            cancelButtonText: 'Cancelar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Llamar a eliminar_sucursal.php utilizando AJAX
-                $.ajax({
-                    type: 'POST',
-                    url: './ajax/eliminar_sucursal.php',
-                    data: {id_sucursal: id_sucursal},
-                    dataType: 'json',
-                    success: function(response) {
-                        if (response.success) {
-                            // Recargar la tabla después de eliminar
-                            tabla.ajax.reload();
-                            Swal.fire('Eliminado!', 'El registro ha sido eliminado.', 'success');
-                        } else {
-                            Swal.fire('Error', 'Hubo un problema al eliminar el registro.', 'error');
-                        }
-                    },
-                    error: function() {
-                        Swal.fire('Error', 'Hubo un error de red o de servidor.', 'error');
-                    }
-                });
-            }
-        });
-    });
 });
 </script>
-
 
 </body>
 <?php

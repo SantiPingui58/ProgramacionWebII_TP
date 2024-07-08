@@ -1,34 +1,64 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <?php
 include("./php/head.php");
-showHead("Proximamente");
+showHead("Admin Productos");
+echo '<body>';
 include("header.php");
 
 if (!isset($_SESSION['usuario']) || (isset($_SESSION['admin']) && $_SESSION['admin']==0)) {
-    echo '<script>';
-    echo "window.location.href = 'index.php';";
-    echo '</script>';
-  }
+  echo '<script>';
+  echo "window.location.href = 'index.php';";
+  echo '</script>';
+}
 ?>
 
+<div class="container">
+    <table id="miTabla" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th style="width: 20px;">ID</th> 
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Acciones</th> 
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
 
-<body >
+<script src="./js/eliminar.js"></script>
+<script>
+$(document).ready(function() {
+    var tabla = $('#miTabla').DataTable({
+        "ajax": {
+            "url": "./ajax/get_entidades.php",
+            "data": function (d) {
+                d.tabla = "productos";
+            }
+        },
+        "columns": [
+            {"data": "id_producto"},
+            {"data": "nombre"},
+            {"data": "precio"},
+            {"data": "stock"},
+            {
+                "data": null,
+                // Botón de eliminar
+                "render": function (data, type, row) {
+                    return '<button type="button" class="btn btn-danger btn-eliminar" data-id="' + row.id_producto + '" data-url="./ajax/eliminar.php" data-tipo="producto">' +
+                           '<i class="fas fa-trash-alt"></i></button>';
+                }
+            }
+        ]
+    });
+});
+</script>
 
-    <div class="text-center">
-        <h1 class="display-4">Página en Desarrollo</h1>
-        <p class="lead">Próximamente...</p>
-        <button class="btn btn-primary" onclick="window.location.href = 'admin.php';">Volver al Inicio</button>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-
 <?php
 include("./php/footer.php");
 ?>
-
 </html>
