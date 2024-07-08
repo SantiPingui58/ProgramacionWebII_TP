@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Splindux - Modificar Item</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico?v=2">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f2f2f2;">
+      <a class="navbar-brand" href="index.html"><img src="img/logo.png" alt="Logo" height="40"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+	  
+	  
+      <div class="collapse navbar-collapse ml-auto" id="navbarNav">
+	  
+        <ul class="navbar-nav">
+		 <li class="nav-item">
+            <a class="nav-link" href="admin.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="admin_agregar.html">Agregar</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="admin_items.html">Ver Items</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  
+  
+  <main>
+    <div class="container mt-4">
+      <h1>Modificar Item</h1>
+
+      <div class="form-group">
+        <div>
+          <img src="img/producto1.jpg" alt="Imagen del Item" width="300">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="nombreItem">Nombre del Item</label>
+        <input type="text" class="form-control" id="nombreItem" value="Peluca Pelo Largo Verde">
+      </div>
+      <div class="form-group">
+        <label for="descripcionItem">Descripción del Item</label>
+        <textarea class="form-control" id="descripcionItem" rows="4">Peluca rizada color verde pelo larga producto importado</textarea>
+      </div>
+      <div class="form-group">
+        <label for="precioItem">Precio</label>
+        <input type="number" class="form-control" id="precioItem" value="24999">
+      </div>
+
+      <div class="form-group">
+        <label for="descuentoItem">Descuento (%)</label>
+        <input type="number" class="form-control" id="descuentoItem" value="24">
+      </div>
+
+		<div class="form-group form-check">
+		<input type="checkbox" class="form-check-input" id="stockItem" checked>
+		<label class="form-check-label" for="stockItem">Stock</label>
+		</div>
+		
+     <a href="admin_items.html" class="btn btn-success">Guardar</a>
+	 <a href="admin_items.html" class="btn btn-primary">Descartar</a>
+	  
+
+    </div>
+  </main>
+
+  <footer class="bg-dark text-white text-center py-4 mt-auto">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p>&copy; 2023 Splindux. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

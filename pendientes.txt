@@ -1,0 +1,3 @@
+- Usar la libreria de https://sweetalert2.github.io/#download para los mensajes
+- Usar la libreria de datatables para mostrar los usuarios/productos/sucursales en modo admin
+- Hacer las paginas de administrador
